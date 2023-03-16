@@ -1,0 +1,16 @@
+[
+  {
+    "school": "George Washington University",
+    "major": "Computer Science",
+    "degree": "B.S.",
+    "year": "May 1999",
+    "description": "Pursued a computer science degree"
+  },
+  {
+    "school": "San Francisco State University",
+    "major": "International Business",
+    "degree": "B.A.",
+    "year": "May 2012",
+    "description": "Graduated from San Francisco State University with a degree in international business"
+  }
+]

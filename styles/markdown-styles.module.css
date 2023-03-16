@@ -1,0 +1,20 @@
+.markdown {
+  @apply font-serif leading-9;
+}
+
+/*.markdown p {*/
+/*  @apply text-2xl font-normal*/
+/*}*/
+.markdown ul,
+.markdown ol,
+.markdown blockquote {
+  @apply my-6;
+}
+
+.markdown h2 {
+  @apply text-4xl font-semibold mt-12 mb-4 leading-snug;
+}
+
+.markdown h3 {
+  @apply text-3xl font-semibold mt-8 mb-4 leading-snug;
+}

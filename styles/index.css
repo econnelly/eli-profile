@@ -1,0 +1,9 @@
+@import "vendor.css";
+@import "styles.css";
+@import "markdown-styles.module.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
+

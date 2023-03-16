@@ -1,0 +1,29 @@
+{
+  "description": "loremp ipsum and whatnot",
+  "types": [
+    {
+      "name": "Android Development",
+      "level": 85
+    },
+    {
+      "name": "Management",
+      "level": 75
+    },
+    {
+      "name": "Java",
+      "level": 70
+    },
+    {
+      "name": "Kotlin",
+      "level": 60
+    },
+    {
+      "name": "React",
+      "level": 25
+    },
+    {
+      "name": "Bread Making",
+      "level": 25
+    }
+  ]
+}

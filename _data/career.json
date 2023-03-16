@@ -1,0 +1,30 @@
+[
+  {
+    "company": "Google",
+    "role": "Engineering Manager",
+    "start": "October 2020",
+    "end": "Present",
+    "description": "Currently managing a team of developers at Google"
+  },
+  {
+    "company": "Tachometer, Inc",
+    "role": "Founder",
+    "start": "March 2019",
+    "end": "October 2020",
+    "description": "Founded Tachometer"
+  },
+  {
+    "company": "Imgur, Inc",
+    "role": "Android Engineering Manager",
+    "start": "June 2015",
+    "end": "August 2018",
+    "description": "Sr. Android developer and then engineering manager at Imgur"
+  },
+  {
+    "company": "SoundHound, Inc",
+    "role": "Android Developer",
+    "start": "June 2012",
+    "end": "June 2015",
+    "description": "Android developer at SoundHound"
+  }
+]

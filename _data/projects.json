@@ -1,0 +1,23 @@
+{
+  "description": "These are the projects I'm most proud of.",
+  "projects": [
+    {
+      "title": "Eli's Portfolio Site (NextJS)",
+      "image": "eli-profile.png",
+      "url": "https://github.com/econnelly/eli-profile",
+      "category": "react"
+    },
+    {
+      "title": "Eli's Portfolio Site (GatsbyJS)",
+      "image": "eli-profile.png",
+      "url": "https://github.com/econnelly/eli-profile",
+      "category": "react"
+    },
+    {
+      "title": "Tachometer, inc (Discontinued)",
+      "image": "logo-speed-color.png",
+      "url": "https://tachometer.io",
+      "category": "ruby on rails"
+    }
+  ]
+}

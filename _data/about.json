@@ -1,0 +1,11 @@
+{
+  "name": "Eli Connelly",
+  "bio": "Software engineering manager with experience in web and mobile development",
+  "city": "San Francisco",
+  "state": "California",
+  "email": "eli@eliconnelly.com",
+  "resume": "elic_resume.pdf",
+  "occupation": "Engineering Manager",
+  "description": "I love making great software!",
+  "image": "/assets/images/profile.jpg"
+}
