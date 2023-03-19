@@ -2,9 +2,9 @@ import Container from '../../components/blog/container'
 import MoreStories from '../../components/blog/more-stories'
 import HeroPost from '../../components/home/hero-post'
 import Layout from '../../components/blog/layout'
-import {getAllPosts} from '../../lib/api'
+import {getAllPosts} from '@/lib/api'
 import Head from 'next/head'
-import {CMS_NAME, SITE_OWNER_FN} from '../../lib/constants'
+import {SITE_OWNER_FN} from '@/lib/constants'
 import Post from '../../types/post'
 import SidebarContainer from "../../components/blog/sidebar/sidebar-container";
 

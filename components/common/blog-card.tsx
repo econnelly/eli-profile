@@ -26,7 +26,7 @@ const BlogCard = ({
 
             <a href={`/blog/${slug}`}>
                 <Image alt={"Placeholder"} className={"block h-auto w-full object-cover"} src={coverImage}
-                       layout={"responsive"} width={500} height={220}/>
+                       width={500} height={220} />
             </a>
 
             <header className={"flex items-center justify-between leading-tight p-1 md:p-2"}>
@@ -38,24 +38,25 @@ const BlogCard = ({
 
             </header>
             <section className={"p-1"}>
-                <p className={"text-grey-darker text-sm"}>
+                <p className={"text-grey-darker text-sm my-2"}>
                     {postDate.toLocaleDateString('en-US', {year: "numeric", month: "short", day: "numeric"})}
                 </p>
             </section>
 
-            <footer className={"flex items-center justify-between leading-none p-2 md:p-4"}>
-                <a className={"flex items-center no-underline hover:underline text-black"} href={"#"}>
+            {/*<footer className={"flex items-center justify-between leading-none my-1"}>*/}
+                {/*<a className={"flex items-center no-underline hover:underline text-black ml-2 text-sm"} href={"#"}>*/}
                     {/*<img alt="Placeholder" className="block rounded-full"*/}
                     {/*     src={author.picture}/>*/}
-                    <p className={"ml-2 text-sm"}>
-                        by: {author.name}
-                    </p>
-                </a>
+                    {/*{author.name}*/}
+                    {/*<div className={"ml-2 text-sm"}>*/}
+                    {/*    <b>by:</b> {author.name}*/}
+                    {/*</div>*/}
+                {/*</a>*/}
                 {/*<a className={"no-underline text-grey-darker hover:text-red-dark"} href={"#"}>*/}
                 {/*    <span className={"hidden"}>Like</span>*/}
                 {/*    <i className="fa fa-heart"/>*/}
                 {/*</a>*/}
-            </footer>
+            {/*</footer>*/}
 
         </article>
 

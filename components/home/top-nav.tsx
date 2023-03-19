@@ -1,5 +1,4 @@
 import React, {RefObject, useEffect, useLayoutEffect, useMemo, useRef, useState} from "react";
-import {getAllPosts} from "../../lib/api";
 
 type NavLink = {
     id: string;

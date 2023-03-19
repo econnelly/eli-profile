@@ -1,5 +1,5 @@
 import 'font-awesome/css/font-awesome.css'
-import {faFacebookSquare, faLinkedin, faInstagram, faBlogger, faTwitterSquare} from "@fortawesome/free-brands-svg-icons"
+import {faFacebookSquare, faLinkedin, faInstagram, faBlogger, faTwitterSquare, faGithub} from "@fortawesome/free-brands-svg-icons"
 import Socials from "../_data/socials.json"
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
@@ -20,6 +20,7 @@ export const getSocials = (): SocialLink[] => {
     links["instagram"] = faInstagram
     links["blogger"] = faBlogger
     links["twitter"] = faTwitterSquare
+    links["github"] = faGithub
 
     return Socials.filter((item) => {
         return item.name && links[item.name]

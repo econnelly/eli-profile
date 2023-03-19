@@ -45,19 +45,19 @@ const Portfolio = () => {
 
             <div className="row s-portfolio__header">
                 <div className="column large-12">
-                    <h3>A Few Of My Latest Creations</h3>
+                    <h3>{ProjectData.description}</h3>
                 </div>
             </div>
 
             <div
-                className={"row collapse block-large-1-4 block-medium-1-3 block-tab-1-2 block-500-stack folio-list"}>
+                className={"row block-large-1-4 block-medium-1-3 block-tab-1-2 block-500-stack folio-list"}>
                 {ProjectData.projects.map((project, i) => {
                         const model = String(i + 1).padStart(2, '0')
                         return (
 
-                            <>
+                            <React.Fragment key={model}>
                                 <div className={"column folio-item"}>
-                                    <a href={`#modal-${model}`} className={"folio-item__thumb"} onClick={(e) => {
+                                    <a href={`#modal-${model}`} className={"folio-item__thumb aspect-square"} onClick={(e) => {
                                         e.preventDefault()
                                         openModal(i, () => {
                                             e.currentTarget.blur()
@@ -97,7 +97,7 @@ const Portfolio = () => {
                                         link</a>
 
                                 </ReactModal>
-                            </>
+                            </React.Fragment>
                         )
                     }
                 )}

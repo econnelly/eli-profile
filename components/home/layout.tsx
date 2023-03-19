@@ -3,6 +3,7 @@ import Footer from "../common/footer";
 import Meta from "./meta";
 import {CMS_NAME} from "@/lib/constants";
 import Head from "next/head";
+import styles from './Layout.module.css'
 
 type Props = {
     children: React.ReactNode;

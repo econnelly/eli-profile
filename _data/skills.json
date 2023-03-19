@@ -1,5 +1,5 @@
 {
-  "description": "loremp ipsum and whatnot",
+  "description": "",
   "types": [
     {
       "name": "Android Development",
@@ -19,10 +19,6 @@
     },
     {
       "name": "React",
-      "level": 25
-    },
-    {
-      "name": "Bread Making",
       "level": 25
     }
   ]
