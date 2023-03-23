@@ -134,7 +134,8 @@ const TopNav = ({blog}: Props) => {
 
         let newSection = currentNav;
         sections?.forEach(section => {
-            if (section && section.offsetTop - 120 <= loc) {
+            if (section && section.offsetTop <= loc) {
+                console.log(section.id)
                 newSection = section.id
                 return
             }
@@ -180,7 +181,7 @@ const TopNav = ({blog}: Props) => {
                 scrolling: ""
             }
         }
-        const bottom = sections[sections.length - 1].offsetTop - window.innerHeight;
+        const bottom = sections[sections.length - 1].offsetTop - (window.document.body.offsetHeight / 2);
         if (loc >= bottom) {
             setCurrentNav(links[links.length - 1].id)
         }
