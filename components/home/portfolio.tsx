@@ -7,16 +7,29 @@ const Portfolio = () => {
     const openArray = new Array(ProjectData.projects.length).fill(false);
     const [isOpen, setIsOpen] = useState(openArray)
 
-    const customStyles = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-        },
-    };
+    const customStyles =
+        {
+            overlay: {
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(10, 10, 10, 0.75)'
+            },
+            content: {
+                top: '75%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                marginRight: '-50%',
+                marginBottom: '50%',
+                transform: 'translate(-50%, -85%)',
+                border: '1px solid #ccc',
+                background: '#FFFFFF',
+                overflow: 'auto',
+            }
+        };
 
     const openModal = (index: number, onDialogOpen: () => any) => {
         const o = ProjectData.projects.map((p, i) => {
@@ -58,9 +71,10 @@ const Portfolio = () => {
                             <React.Fragment key={model}>
                                 <div className={"column folio-item"}>
                                     <a href={`#modal-${model}`} className={"folio-item__thumb aspect-square"} onClick={(e) => {
-                                        e.preventDefault()
+                                        // e.preventDefault()
                                         openModal(i, () => {
-                                            e.currentTarget.blur()
+                                            console.log("Calling blue")
+
                                         })
                                     }}>
                                         <img src={`assets/images/portfolio/${project.image}`} alt=""/>
@@ -70,7 +84,7 @@ const Portfolio = () => {
                                 <ReactModal
                                     isOpen={isOpen[i]}
                                     onRequestClose={closeModal}
-                                    className={'modal-popup border-2 border-gray-700 rounded-lg w-full justify-center hover:bg-sky-700'}
+                                    className={'modal-popup basicLightbox basicLightbox--visible'}
                                     id={`model-${model}`}
                                     style={customStyles}
                                     contentRef={(r) => {
@@ -78,23 +92,24 @@ const Portfolio = () => {
                                     }}
 
                                 >
-                                    {/*{tailwindDialog()}*/}
+                                    <div className={""}>
+                                        <div className={""} role="dialog">
+                                            <div className="modal-popup">
+                                                <img src={`assets/images/portfolio/${project.image}`} alt=""/>
 
-                                    <img src={`assets/images/portfolio/${project.image}`} alt=""/>
+                                                    <div className="modal-popup__desc">
+                                                        <h5 className={"pt-1 pb-2"}>{project.title}</h5>
+                                                        <p className={"pb-2"}>{project.description}</p>
+                                                        <ul className="modal-popup__cat">
+                                                            <li>{project.category}</li>
+                                                        </ul>
+                                                    </div>
 
-                                    <div className="modal-popup__desc justify-center">
-                                        <h5>{project.title}</h5>
-                                        <p>Odio soluta enim quos sit asperiores rerum rerum repudiandae cum. Vel
-                                            voluptatem alias qui assumenda iure et expedita voluptatem. Ratione
-                                            officiis quae.</p>
-                                        <ul className="modal-popup__cat">
-                                            <li>Branding</li>
-                                            <li>Product Design</li>
-                                        </ul>
+                                                    <a href={project.url} target={"_blank"} className={"modal-popup__details m-3 p-2"}>Project
+                                                        link</a>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    <a href={project.url} target={"_blank"} className="modal-popup__details">Project
-                                        link</a>
 
                                 </ReactModal>
                             </React.Fragment>

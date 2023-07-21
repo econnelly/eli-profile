@@ -4054,12 +4054,15 @@ input[type="button"].btn--primary:focus {
  * ## modal popup
  * ------------------------------------------------------------------- */
 .modal-popup {
+    z-index: 2;
     max-width: 680px;
     background-color: white;
     font-size: calc(var(--text-size) * 0.9444);
     line-height: 1.647;
     overflow-y: auto;
     position: relative;
+    -webkit-transition: all, 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: all, 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .modal-popup img {
@@ -4119,9 +4122,6 @@ input[type="button"].btn--primary:focus {
     color: white;
     border-radius: var(--border-radius);
     padding: 0 1.4rem;
-    position: absolute;
-    top: var(--vspace-1_25);
-    left: 4rem;
 }
 
 .modal-popup__details:hover, 

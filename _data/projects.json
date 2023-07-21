@@ -2,22 +2,25 @@
   "description": "Current Projects",
   "projects": [
     {
-      "title": "Eli's Portfolio Site (NextJS)",
-      "image": "eli-profile.png",
+      "title": "My Portfolio Site (NextJS)",
+      "image": "new-profile.png",
       "url": "https://github.com/econnelly/eli-profile",
-      "category": "react"
+      "category": "react",
+      "description": "This is the site you're currently on. It is a meant to showcase projects I've worked on as well as give me a little deeper understanding of web technologies. It's built using NextJS 13 to statically create everything. In general, that means the site is pure HTML and Javascript without any databases or dynamic content. Even blog posts start as markdown and get converted to HTML."
     },
     {
-      "title": "Eli's Portfolio Site (GatsbyJS)",
-      "image": "eli-profile.png",
+      "title": "My Portfolio Site (GatsbyJS)",
+      "image": "old-profile.png",
       "url": "https://github.com/econnelly/eli-profile",
-      "category": "react"
+      "category": "react",
+      "description": "My previous portfolio site was created in the Gatsby framework. It was a great way to learn about graphql, but the next iteration used a more modern framework."
     },
     {
       "title": "Tachometer, inc (Discontinued)",
       "image": "logo-speed-color.png",
-      "url": "https://tachometer.io",
-      "category": "ruby on rails"
+      "url": "https://github.com/tachometer-io",
+      "category": "ruby on rails",
+      "description": "This was a way for me to build a very useful utility for myself and other developers who make money through ad revenue. The system would fetch ad revenue reports, standardize the values, and create a custom report revenue. I used it daily and wanted to make it available for other developers as well."
     }
   ]
 }
