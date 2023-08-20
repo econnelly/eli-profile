@@ -57,7 +57,12 @@ const getSectionElements = (navItems: NavLink[]): HTMLElement[] => {
             return item.link.startsWith('#') && document.getElementById(item.id) != null;
         })
         .map((item) => {
-            return document.getElementById(item.id);
+            const e = document.getElementById(item.id)
+            if (e == null) throw new DOMException(`Element with id ${item.id} doesn't exist`, "SectionException")
+            e.addEventListener("blur", () => {
+
+            })
+            return e;
         })
 }
 
@@ -94,18 +99,16 @@ const TopNav = ({blog}: Props) => {
 
         const blogIndex = links.findIndex((item) => item.id === blogLink.id)
         if (blog && blogIndex < 0) links.push(blogLink)
-        setSections(getSectionElements(links));
-        setTimeout(() => {
-            if (navRef && navRef.current) {
-                const ctx = navRef.current
-
-                // @ts-ignore
-                setTriggerHeight(ctx.offsetHeight);
-            } else {
-                console.log("Navigation reference was invalid")
-            }
-        }, 300);
+        const s = getSectionElements(links)
+        console.log(s)
+        setSections(s);
     }, [])
+
+    useEffect(() => {
+        if (sections.length > 0) {
+            setTriggerHeight(sections[0].getBoundingClientRect().bottom);
+        }
+    },[sections])
 
     const buildHeaderClass = () => {
         return `s-header ${headerClassBuilder.sticky} ${headerClassBuilder.offset} ${headerClassBuilder.scrolling}`.trim()
@@ -125,28 +128,62 @@ const TopNav = ({blog}: Props) => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, [triggerHeight, scrolled, headerClass, headerClassBuilder]);
 
+    useEffect(() => {
+        const sectionBorder = window.innerHeight * 0.4
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.reverse().every((entry) => {
+                const id = entry.target.getAttribute('id');
+                const rect = entry.target.getBoundingClientRect()
+
+                if((window.scrollY || 0) == 0) {
+                    setCurrentNav(links[0].id)
+                    return false
+                } else if (entry.isIntersecting && id != null && rect.top < sectionBorder) {
+                    setCurrentNav(id)
+                    return false
+                }
+
+                return true
+            });
+        });
+
+        document.querySelectorAll('section[id]').forEach((section) => {
+            observer.observe(section);
+        });
+
+        return () => observer.disconnect();
+    });
+
     const handleScroll = () => {
         if (sections.length === 0) {
             return;
         }
 
+        const clientRects = sections.map(section => {
+            return section.getBoundingClientRect();
+        })
+
         const loc = (window.scrollY || 0)
 
         let newSection = currentNav;
-        sections?.forEach(section => {
-            if (section && section.offsetTop <= loc) {
-                console.log(section.id)
-                newSection = section.id
-                return
-            }
+        sections?.forEach((section, i) => {
+            let rect = clientRects[i];
+            // console.log({"loc": loc, index: i, "top": rect.top})
+            // if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+            //     newSection = section.id
+            //     return
+            // }
         })
 
         if (newSection !== currentNav) {
-            setCurrentNav(newSection)
+            console.log(`Setting current nav to ${newSection}`)
+            // setCurrentNav(newSection)
         }
 
         let tempHeaderClassBuilder: HeaderClass = headerClassBuilder
-        if (loc > (sections[0]?.offsetTop + sections[0]?.offsetHeight - triggerHeight)) {
+        // console.log({"loc": loc, "bottom": clientRects[0]?.bottom})
+        if (clientRects[0]?.bottom <= 5) {
             tempHeaderClassBuilder = {
                 ...tempHeaderClassBuilder,
                 sticky: "sticky"
@@ -158,7 +195,7 @@ const TopNav = ({blog}: Props) => {
             }
         }
 
-        if (loc > triggerHeight + 20) {
+        if (clientRects[0]?.bottom <= 20) {
             tempHeaderClassBuilder = {
                 ...tempHeaderClassBuilder,
                 offset: "offset"
@@ -170,7 +207,7 @@ const TopNav = ({blog}: Props) => {
             }
         }
 
-        if (loc > triggerHeight + 70) {
+        if (clientRects[0]?.bottom <= 70) {
             tempHeaderClassBuilder = {
                 ...tempHeaderClassBuilder,
                 scrolling: "scrolling"
@@ -180,10 +217,6 @@ const TopNav = ({blog}: Props) => {
                 ...tempHeaderClassBuilder,
                 scrolling: ""
             }
-        }
-        const bottom = sections[sections.length - 1].offsetTop - (window.document.body.offsetHeight / 2);
-        if (loc >= bottom) {
-            setCurrentNav(links[links.length - 1].id)
         }
 
         if (loc === 0) {

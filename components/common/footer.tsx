@@ -12,7 +12,7 @@ import {getSocials} from "../../lib/socials";
 
 const Footer = () => {
   return (
-      <footer className="s-footer">
+      <footer className={"s-footer"} id={"page_footer"}>
         <div className="row">
           <div className="column large-4 medium-6 w-1000-stack s-footer__social-block">
             <ul className="s-footer__social">

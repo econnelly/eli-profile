@@ -1,22 +1,22 @@
 {
-  "description": "Current Projects",
+  "description": "Past and Present Projects",
   "projects": [
     {
-      "title": "My Portfolio Site (NextJS)",
-      "image": "new-profile.png",
+      "title": "eliconnelly.com (NextJS)",
+      "image": "nextjs-profile.png",
       "url": "https://github.com/econnelly/eli-profile",
       "category": "react",
       "description": "This is the site you're currently on. It is a meant to showcase projects I've worked on as well as give me a little deeper understanding of web technologies. It's built using NextJS 13 to statically create everything. In general, that means the site is pure HTML and Javascript without any databases or dynamic content. Even blog posts start as markdown and get converted to HTML."
     },
     {
-      "title": "My Portfolio Site (GatsbyJS)",
-      "image": "old-profile.png",
+      "title": "eliconnelly.com (Gatsby)",
+      "image": "gatsby-profile.png",
       "url": "https://github.com/econnelly/eli-profile",
       "category": "react",
       "description": "My previous portfolio site was created in the Gatsby framework. It was a great way to learn about graphql, but the next iteration used a more modern framework."
     },
     {
-      "title": "Tachometer, inc (Discontinued)",
+      "title": "Tachometer (Discontinued)",
       "image": "logo-speed-color.png",
       "url": "https://github.com/tachometer-io",
       "category": "ruby on rails",

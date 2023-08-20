@@ -1,56 +1,80 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Modal from 'react-modal'
 import ProjectData from "../../_data/projects.json"
 import ReactModal from "react-modal";
 
 const Portfolio = () => {
-    const openArray = new Array(ProjectData.projects.length).fill(false);
-    const [isOpen, setIsOpen] = useState(openArray)
+    const projects = ProjectData.projects
+    const initialProject: {title: string, image: string, url: string, category: string, description: string} = projects[0]
+    const [selectedProject, setSelectedProject] = useState(initialProject)
+    const [isOpen, setIsOpen] = useState(false)
 
-    const customStyles =
-        {
-            overlay: {
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: 'rgba(10, 10, 10, 0.75)'
-            },
-            content: {
-                top: '75%',
-                left: '50%',
-                right: 'auto',
-                bottom: 'auto',
-                marginRight: '-50%',
-                marginBottom: '50%',
-                transform: 'translate(-50%, -85%)',
-                border: '1px solid #ccc',
-                background: '#FFFFFF',
-                overflow: 'auto',
-            }
-        };
-
-    const openModal = (index: number, onDialogOpen: () => any) => {
-        const o = ProjectData.projects.map((p, i) => {
-            return i === index;
-        })
-
-        setIsOpen(o)
+    const openModal = (index: number) => {
+        setIsOpen(true)
+        setSelectedProject(projects[index])
 
         document.body.style.overflow = 'hidden';
-
-        onDialogOpen()
     }
 
     const closeModal = () => {
-        const o = new Array(ProjectData.projects.length).fill(false);
-        setIsOpen(o)
+        setIsOpen(false)
 
         document.body.style.overflow = 'unset';
     }
 
-    // ReactModal.setAppElement("#portfolio")
+    const customStyles =
+        {
+            overlay: {
+                zIndex: 10,
+                backgroundColor: 'rgba(10, 10, 10, 0.75)',
+            },
+            content: {
+                position: "absolute",
+                top: "15%",
+                bottom: "15%",
+                left: "20%",
+                right: "20%",
+                padding: "1px"
+            }
+        };
+
+    const reactModalDialog = (project: {title: string, image: string, url: string, category: string, description: string}, modal: string, isOpen: boolean) => {
+        return (
+            <ReactModal
+                isOpen={isOpen}
+                onRequestClose={closeModal}
+                id={modal}
+                style={customStyles}
+                contentRef={(r) => {
+                    contentRef = r
+                }}
+            >
+                <div className={""}>
+                    <div className={""} role="dialog">
+                        <div className="">
+                            <img className={"h-full object-cover"} src={`assets/images/portfolio/${project.image}`} alt=""/>
+
+                            <div className="modal-popup__desc">
+                                <h5 className={"pt-1 pb-2"}>{project.title}</h5>
+                                <p className={"pb-2"}>{project.description}</p>
+                                <ul className="modal-popup__cat">
+                                    <li>{project.category}</li>
+                                </ul>
+                            </div>
+
+                            <a href={project.url} target={"_blank"} className={"modal-popup__details m-3 p-2"}>Project
+                                link</a>
+                        </div>
+                    </div>
+                </div>
+
+            </ReactModal>
+        )
+    }
+
+    useEffect(() => {
+        console.log(`Setting isOpen to ${isOpen}`)
+    }, [isOpen])
 
     let contentRef: HTMLElement | null = null
     return (
@@ -69,133 +93,28 @@ const Portfolio = () => {
                         return (
 
                             <React.Fragment key={model}>
-                                <div className={"column folio-item"}>
-                                    <a href={`#modal-${model}`} className={"folio-item__thumb aspect-square"} onClick={(e) => {
-                                        // e.preventDefault()
-                                        openModal(i, () => {
-                                            console.log("Calling blue")
-
-                                        })
+                                <div className={"column folio-item rounded"}>
+                                    <a href={`#`} className={"folio-item__thumb aspect-square"} onClick={(e) => {
+                                        e.preventDefault()
+                                        console.log("Click detected")
+                                        openModal(i)
                                     }}>
-                                        <img src={`assets/images/portfolio/${project.image}`} alt=""/>
+                                        <div className={"text-center"}>
+                                            {project.title}
+                                        </div>
+                                        <img className={"h-full object-cover"} src={`assets/images/portfolio/${project.image}`} alt=""/>
                                     </a>
                                 </div>
 
-                                <ReactModal
-                                    isOpen={isOpen[i]}
-                                    onRequestClose={closeModal}
-                                    className={'modal-popup basicLightbox basicLightbox--visible'}
-                                    id={`model-${model}`}
-                                    style={customStyles}
-                                    contentRef={(r) => {
-                                        contentRef = r
-                                    }}
-
-                                >
-                                    <div className={""}>
-                                        <div className={""} role="dialog">
-                                            <div className="modal-popup">
-                                                <img src={`assets/images/portfolio/${project.image}`} alt=""/>
-
-                                                    <div className="modal-popup__desc">
-                                                        <h5 className={"pt-1 pb-2"}>{project.title}</h5>
-                                                        <p className={"pb-2"}>{project.description}</p>
-                                                        <ul className="modal-popup__cat">
-                                                            <li>{project.category}</li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <a href={project.url} target={"_blank"} className={"modal-popup__details m-3 p-2"}>Project
-                                                        link</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </ReactModal>
                             </React.Fragment>
                         )
                     }
                 )}
+
+                {reactModalDialog(selectedProject, "project-modal", isOpen)}
             </div>
-
-            {/*{ProjectData.projects.map((project, i) => {*/}
-            {/*    const model = String(i + 1).padStart(2, '0')*/}
-            {/*    return (*/}
-            {/*        <div id={`model-${model}`} hidden>*/}
-            {/*            <div className={"modal-popup"}>*/}
-            {/*                <img src={`assets/images/portfolio/${project.image}`} alt=""/>*/}
-
-            {/*                <div className={"modal-popup__desc"}>{project.title}</div>*/}
-            {/*            </div>*/}
-
-            {/*            <a href={project.url} className="modal-popup__details">Project link</a>*/}
-            {/*        </div>*/}
-            {/*    )*/}
-            {/*})}*/}
-
-            {/*<div id="modal-01" hidden>*/}
-            {/*    <div className="modal-popup">*/}
-            {/*        <img src="images/portfolio/gallery/g-droplet.jpg" alt=""/>*/}
-
-            {/*        <div className="modal-popup__desc">*/}
-            {/*            <h5>Droplet</h5>*/}
-            {/*            <p>Odio soluta enim quos sit asperiores rerum rerum repudiandae cum. Vel voluptatem alias qui*/}
-            {/*                assumenda iure et expedita voluptatem. Ratione officiis quae.</p>*/}
-            {/*            <ul className="modal-popup__cat">*/}
-            {/*                <li>Branding</li>*/}
-            {/*                <li>Product Design</li>*/}
-            {/*            </ul>*/}
-            {/*        </div>*/}
-
-            {/*        <a href="https://www.behance.net/" className="modal-popup__details">Project link</a>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
 
         </section>
-    )
-}
-
-const tailwindDialog = () => {
-    return (
-        <>
-
-            <div
-                className="modal fade fixed top-0 left-0 w-full h-full outline-none overflow-y-auto"
-                id="exampleModalCenter" tabIndex={-1} aria-labelledby="exampleModalCenterTitle" aria-modal="true"
-                role="dialog">
-                <div className="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
-                    <div
-                        className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                        <div
-                            className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                            <h5 className="text-xl font-medium leading-normal text-gray-800"
-                                id="exampleModalScrollableLabel">
-                                Modal title
-                            </h5>
-                            <button type="button"
-                                    className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-                                    data-bs-dismiss="modal" aria-label="Close"/>
-                        </div>
-                        <div className="modal-body relative p-4">
-                            <p>This is a vertically centered modal.</p>
-                        </div>
-                        <div
-                            className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                            <button type="button"
-                                    className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="button"
-                                    className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1">
-                                Save changes
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </>
     )
 }
 

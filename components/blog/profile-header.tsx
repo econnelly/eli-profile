@@ -9,6 +9,7 @@ const ProfileHeader = () => {
 
     const [offsetY, setOffsetY] = useState(0);
     const handleScroll = () => setOffsetY(window.scrollY);
+    const profileRef = useRef(null)
 
     // const parentRef = useRef(null);
 
@@ -19,18 +20,12 @@ const ProfileHeader = () => {
     }, []);
 
     return (
-
-        <section id="hero" className="s-hero target-section">
-
+        <section id="hero" className="s-hero target-section" ref={profileRef}>
             <div className="s-hero__bg" style={{transform: `translateY(${offsetY * 0.3}px)`}}/>
-
             <div className="row s-hero__content">
                 <div className="column">
-
                     <div className="s-hero__content-about">
-
                         <h1>I&apos;m {About.name}.</h1>
-
                         <h3>
                             I&apos;m a {About.city} based <span>{About.occupation}</span>. {About.description}
                         </h3>

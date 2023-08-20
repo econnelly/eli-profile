@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import EducationData from "../../_data/education.json"
 
 const generateEducationBlock = () => {
@@ -28,8 +28,9 @@ const generateEducationBlock = () => {
     )
 }
 const Education = () => {
+    const eduRef = useRef(null)
     return (
-        <div className="row s-resume__section">
+        <div className="row s-resume__section" ref={eduRef}>
             <div className="column large-3 tab-12">
                 <h3 className="section-header-allcaps">Education</h3>
             </div>

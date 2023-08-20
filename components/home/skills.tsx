@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import SkillsData from "../../_data/skills.json"
 
 type Props = {
@@ -30,8 +30,9 @@ const generateSkillsBlock = () => {
 }
 
 const Skills = () => {
+    const skillsRef = useRef(null)
     return (
-        <div className="row s-resume__section">
+        <div className="row s-resume__section" ref={skillsRef}>
             <div className="column large-3 tab-12">
                 <h3 className="section-header-allcaps">Skills</h3>
             </div>

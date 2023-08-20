@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import about from "../../_data/about.json"
 import ProfileImage from "../../public/assets/images/profile.jpg"
 import Image from 'next/image'
@@ -9,8 +9,9 @@ type Props = {
 }
 
 const About = () => {
+    const aboutRef = useRef(null)
     return (
-        <section id={"about"} className={"s-about target-section"}>
+        <section id={"about"} className={"s-about target-section"} ref={aboutRef}>
             <div className={"row"}>
                 <div className={"column large-3 tab-12"}>
                     <Image alt="Profile Image" src={ProfileImage} className={"s-about__pic"} width={100} height={100}/>
