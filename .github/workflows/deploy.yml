@@ -77,7 +77,7 @@ jobs:
           aws-region: us-west-1
       - name: Copy files to S3 with the AWS CLI
         run: |
-          aws s3 sync ./out s3://eliconnelly.com/
+          aws s3 sync ./out s3://eliconnelly.com/ --delete
 #      - name: Upload artifact
 #        uses: actions/upload-pages-artifact@v2
 #        with:
