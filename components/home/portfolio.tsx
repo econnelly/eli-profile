@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import Modal from 'react-modal'
 import ProjectData from "../../_data/projects.json"
 import ReactModal from "react-modal";
 
@@ -22,53 +21,47 @@ const Portfolio = () => {
         document.body.style.overflow = 'unset';
     }
 
-    const customStyles =
-        {
-            overlay: {
-                zIndex: 10,
-                backgroundColor: 'rgba(10, 10, 10, 0.75)',
-            },
-            content: {
-                position: "absolute",
-                top: "15%",
-                bottom: "15%",
-                left: "20%",
-                right: "20%",
-                padding: "1px"
-            }
-        };
-
-    const reactModalDialog = (project: {title: string, image: string, url: string, category: string, description: string}, modal: string, isOpen: boolean) => {
+    const ProjectModal = (project: {title: string, image: string, url: string, category: string, description: string}) => {
         return (
-            <ReactModal
-                isOpen={isOpen}
-                onRequestClose={closeModal}
-                id={modal}
-                style={customStyles}
-                contentRef={(r) => {
-                    contentRef = r
-                }}
-            >
-                <div className={""}>
-                    <div className={""} role="dialog">
-                        <div className="">
-                            <img className={"h-full object-cover"} src={`assets/images/portfolio/${project.image}`} alt=""/>
-
-                            <div className="modal-popup__desc">
-                                <h5 className={"pt-1 pb-2"}>{project.title}</h5>
-                                <p className={"pb-2"}>{project.description}</p>
-                                <ul className="modal-popup__cat">
-                                    <li>{project.category}</li>
-                                </ul>
+            <>
+                <div
+                    className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none project-modal"
+                >
+                    <div className="relative w-auto my-6 mx-auto max-w-6xl">
+                        {/*content*/}
+                        <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                            {/*header*/}
+                            <div className="flex items-start justify-between p-0 rounded-t">
+                                <img src={`assets/images/portfolio/${project.image}`} alt="" className={"center w-full"}/>
                             </div>
-
-                            <a href={project.url} target={"_blank"} className={"modal-popup__details m-3 p-2"}>Project
-                                link</a>
+                            <div className="flex items-start justify-between p-5 rounded-t">
+                                <h3 className="text-3xl font-semibold">
+                                    {project.title}
+                                </h3>
+                            </div>
+                            {/*body*/}
+                            <div className="relative p-6 flex-auto">
+                                <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
+                                    {project.description}
+                                </p>
+                            </div>
+                            {/*footer*/}
+                            <div className="flex items-center justify-end px-6 py-2 rounded-b w-full">
+                                <a href={"#"} className="align-left background-transparent font-bold uppercase px-6 py-2 text-base outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onClick={(e) => {
+                                    e.preventDefault()
+                                    closeModal()
+                                }}>
+                                    Close
+                                </a>
+                                <a href={project.url} target={"_blank"} className="background-transparent font-bold uppercase px-6 py-2 text-base outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" >
+                                    Project Link
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            </ReactModal>
+                <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+            </>
         )
     }
 
@@ -76,7 +69,6 @@ const Portfolio = () => {
         console.log(`Setting isOpen to ${isOpen}`)
     }, [isOpen])
 
-    let contentRef: HTMLElement | null = null
     return (
         <section id="portfolio" className={"s-portfolio target-section"}>
 
@@ -93,16 +85,20 @@ const Portfolio = () => {
                         return (
 
                             <React.Fragment key={model}>
-                                <div className={"column folio-item rounded"}>
+                                <div className={"column folio-item"} onMouseOver={(e) => {
+                                    console.log("Hover")
+                                }} onMouseLeave={(e) => {
+                                    console.log("No Hover")
+                                }}>
                                     <a href={`#`} className={"folio-item__thumb aspect-square"} onClick={(e) => {
                                         e.preventDefault()
-                                        console.log("Click detected")
                                         openModal(i)
                                     }}>
-                                        <div className={"text-center"}>
+
+                                        <div className={"text-center s-portfolio-background"}>
                                             {project.title}
                                         </div>
-                                        <img className={"h-full object-cover"} src={`assets/images/portfolio/${project.image}`} alt=""/>
+                                        <img className={"h-full object-cover hover:scale-95 transition"} src={`assets/images/portfolio/${project.image}`} alt=""/>
                                     </a>
                                 </div>
 
@@ -111,7 +107,7 @@ const Portfolio = () => {
                     }
                 )}
 
-                {reactModalDialog(selectedProject, "project-modal", isOpen)}
+                {isOpen ? ProjectModal(selectedProject) : null}
             </div>
 
         </section>

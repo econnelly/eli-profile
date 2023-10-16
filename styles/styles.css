@@ -3958,6 +3958,10 @@ input[type="button"].btn--primary:focus {
     padding-bottom: var(--vspace-5);
 }
 
+.s-portfolio-background {
+    background-color: var(--color-gray-1);
+}
+
 .s-portfolio h3 {
     margin-top: 0;
 }
@@ -3999,56 +4003,56 @@ input[type="button"].btn--primary:focus {
     transition: all, .5s;
 }
 
-.folio-item__thumb::after {
-    z-index: 1;
-    content: "...";
-    font-family: var(--font-2);
-    font-weight: 300;
-    font-size: 3rem;
-    color: white;
-    display: block;
-    height: 32px;
-    width: 32px;
-    line-height: 32px;
-    margin-left: -16px;
-    margin-top: -16px;
-    text-align: center;
-    opacity: 0;
-    visibility: hidden;
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    -webkit-transition: all, 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    transition: all, 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-}
+/*.folio-item__thumb::after {*/
+/*    z-index: 1;*/
+/*    content: "...";*/
+/*    font-family: var(--font-2);*/
+/*    font-weight: 300;*/
+/*    font-size: 3rem;*/
+/*    color: white;*/
+/*    display: block;*/
+/*    height: 32px;*/
+/*    width: 32px;*/
+/*    line-height: 32px;*/
+/*    margin-left: -16px;*/
+/*    margin-top: -16px;*/
+/*    text-align: center;*/
+/*    opacity: 0;*/
+/*    visibility: hidden;*/
+/*    -webkit-transform: scale(0.5);*/
+/*    transform: scale(0.5);*/
+/*    -webkit-transition: all, 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);*/
+/*    transition: all, 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);*/
+/*    position: absolute;*/
+/*    left: 50%;*/
+/*    top: 50%;*/
+/*}*/
 
-.folio-item img {
-    display: block;
-    margin: 0;
-    -webkit-transition: all, .5s;
-    transition: all, .5s;
-}
+/*.folio-item img {*/
+/*    display: block;*/
+/*    margin: 0;*/
+/*    -webkit-transition: all, .5s;*/
+/*    transition: all, .5s;*/
+/*}*/
 
 /* on hover
  *---------------------------------------------- */
-.folio-item:hover .folio-item__thumb::before {
-    opacity: 1;
-    visibility: visible;
-}
+/*.folio-item:hover .folio-item__thumb::before {*/
+/*    opacity: 1;*/
+/*    visibility: visible;*/
+/*}*/
 
-.folio-item:hover .folio-item__thumb::after {
-    opacity: 1;
-    visibility: visible;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-}
+/*.folio-item:hover .folio-item__thumb::after {*/
+/*    opacity: 1;*/
+/*    visibility: visible;*/
+/*    -webkit-transform: scale(1);*/
+/*    transform: scale(1);*/
+/*}*/
 
-.folio-item:hover .folio-item__thumb img {
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05);
-}
+/*.folio-item:hover .folio-item__thumb img {*/
+/*    -webkit-transform: scale(1.05);*/
+/*    transform: scale(1.05);*/
+/*}*/
 
 /* ------------------------------------------------------------------- 
  * ## modal popup
@@ -4129,6 +4133,40 @@ input[type="button"].btn--primary:focus {
     background-color: var(--color-2);
     border-color: var(--color-2);
     color: white;
+}
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transform: scale(1.0);
+    transition: all 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+    opacity: 1;
+    transform: scale(1.0);
+}
+
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+    transform: scale(0.25);
+}
+
+.ReactModal__Content {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+    transition: all 350ms ease-in-out;
+}
+
+.ReactModal__Content--after-open {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all 100ms ease-in-out;
+}
+
+.ReactModal__Content--before-close {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+    transition: all 100ms ease-in-out;
 }
 
 
