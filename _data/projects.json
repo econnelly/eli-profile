@@ -11,7 +11,7 @@
     {
       "title": "eliconnelly.com (Gatsby)",
       "image": "gatsby-profile.png",
-      "url": "https://github.com/econnelly/eli-profile",
+      "url": "https://github.com/econnelly/eli-profile-gatsby",
       "category": "react",
       "description": "My previous portfolio site was created in the Gatsby framework. It was a great way to learn about graphql, but the next iteration used a more modern framework."
     },

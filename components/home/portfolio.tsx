@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ProjectData from "../../_data/projects.json"
+import Image from "next/image";
 
 const Portfolio = () => {
     const projects = ProjectData.projects
@@ -35,7 +36,7 @@ const Portfolio = () => {
                         <div className={"border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"}>
                             {/*header*/}
                             <div className={"flex items-start justify-between p-0 rounded-t"}>
-                                <img src={`assets/images/portfolio/${project.image}`} alt="" className={"center w-full"}/>
+                                <Image src={`assets/images/portfolio/${project.image}`} alt="" className={"center w-full"} width={400} height={200}/>
                             </div>
                             <div className={"flex items-start justify-between p-5 rounded-t"}>
                                 <h3 className={"text-3xl font-semibold"}>
@@ -113,7 +114,7 @@ const Portfolio = () => {
                                         <div className={"text-center s-portfolio-background"}>
                                             {project.title}
                                         </div>
-                                        <img className={"h-full object-cover hover:scale-95 transition"} src={`assets/images/portfolio/${project.image}`} alt=""/>
+                                        <Image className={"h-full object-cover hover:scale-95 transition"} src={`assets/images/portfolio/${project.image}`} width={300} height={150} alt=""/>
                                     </a>
                                 </div>
 
