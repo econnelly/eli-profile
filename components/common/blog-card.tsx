@@ -3,6 +3,7 @@ import React from "react";
 import Image from 'next/image'
 import exp from "constants";
 import coverImage from "../home/cover-image";
+import Link from "next/link";
 
 export type BlogPreviewItem = {
     title: string
@@ -24,16 +25,16 @@ const BlogCard = ({
 
         <article className={"overflow-hidden rounded-lg shadow-lg"}>
 
-            <a href={`/blog/${slug}`}>
+            <Link href={`/blog/${slug}`}>
                 <Image alt={"Placeholder"} className={"block h-auto w-full object-cover"} src={coverImage}
                        width={500} height={220} />
-            </a>
+            </Link>
 
             <header className={"flex items-center justify-between leading-tight p-1 md:p-2"}>
                 <h1 className={"text-lg"}>
-                    <a className={"no-underline hover:underline text-black truncate"} href={`/blog/${slug}`}>
+                    <Link className={"no-underline hover:underline text-black truncate"} href={`/blog/${slug}`}>
                         {title}
-                    </a>
+                    </Link>
                 </h1>
 
             </header>

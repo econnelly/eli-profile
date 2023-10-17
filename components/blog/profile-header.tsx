@@ -4,6 +4,7 @@ import {faFacebookSquare, faLinkedin, faInstagram, faBlogger, faTwitterSquare} f
 import React, {RefObject, useEffect, useRef, useState} from "react";
 import About from "../../_data/about.json"
 import {getSocials} from "@/lib/socials";
+import Link from "next/link";
 
 const ProfileHeader = () => {
 
@@ -32,8 +33,8 @@ const ProfileHeader = () => {
 
                         <div className="s-hero__content-social">
                             {getSocials().map((item) => {
-                                return <a href={item.url} key={item.name} target={"_blank"} rel={"noreferrer"}><FontAwesomeIcon
-                                    icon={item.network} height={"0.875em"}/></a>
+                                return <Link href={item.url} key={item.name} target={"_blank"} rel={"noreferrer"}><FontAwesomeIcon
+                                    icon={item.network} height={"0.875em"}/></Link>
                             })}
                         </div>
 
@@ -43,7 +44,7 @@ const ProfileHeader = () => {
             </div>
 
             <div className="s-hero__scroll">
-                <a href="#about" className="s-hero__scroll-link smoothscroll" onClick={e => {
+                <Link href="#about" className="s-hero__scroll-link smoothscroll" onClick={e => {
                     e.preventDefault()
                     const element = document.getElementById("about");
                     if (element) {
@@ -56,7 +57,7 @@ const ProfileHeader = () => {
                             d="M18.707 12.707L17.293 11.293 13 15.586 13 6 11 6 11 15.586 6.707 11.293 5.293 12.707 12 19.414z"/></svg>
                 </span>
                     <span className="scroll-text">Scroll Down</span>
-                </a>
+                </Link>
             </div>
 
         </section>

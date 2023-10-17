@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import ProjectData from "../../_data/projects.json"
 import Image from "next/image";
+import Link from "next/link";
 
 const Portfolio = () => {
     const projects = ProjectData.projects
@@ -51,15 +52,15 @@ const Portfolio = () => {
                             </div>
                             {/*footer*/}
                             <div className={"flex items-center justify-end px-6 py-2 rounded-b w-full"}>
-                                <a href={"#"} className={"align-left background-transparent font-bold uppercase px-6 py-2 text-base outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"} onClick={(e) => {
+                                <Link href={"#"} className={"align-left background-transparent font-bold uppercase px-6 py-2 text-base outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"} onClick={(e) => {
                                     e.preventDefault()
                                     closeModal()
                                 }}>
                                     Close
-                                </a>
-                                <a href={project.url} target={"_blank"} className={"background-transparent font-bold uppercase px-6 py-2 text-base outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"} >
+                                </Link>
+                                <Link href={project.url} target={"_blank"} className={"background-transparent font-bold uppercase px-6 py-2 text-base outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"} >
                                     Project Link
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -106,7 +107,7 @@ const Portfolio = () => {
                                 }} onMouseLeave={(e) => {
                                     console.log("No Hover")
                                 }}>
-                                    <a href={`#`} className={"folio-item__thumb aspect-square"} onClick={(e) => {
+                                    <Link href={`#`} className={"folio-item__thumb aspect-square"} onClick={(e) => {
                                         e.preventDefault()
                                         openModal(i)
                                     }}>
@@ -115,7 +116,7 @@ const Portfolio = () => {
                                             {project.title}
                                         </div>
                                         <Image className={"h-full object-cover hover:scale-95 transition"} src={`assets/images/portfolio/${project.image}`} width={300} height={150} alt=""/>
-                                    </a>
+                                    </Link>
                                 </div>
 
                             </React.Fragment>
