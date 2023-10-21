@@ -39,7 +39,7 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
     return items
 }
 
-export function getAllPosts(fields: string[] = [], size: number = 0): Post[] {
+export function getAllPosts(fields: string[] = [], size: number = 0) {
     const slugs = getPostSlugs()
     return slugs
         .filter((_, index) => {
@@ -47,8 +47,8 @@ export function getAllPosts(fields: string[] = [], size: number = 0): Post[] {
         })
         .map((slug) => getPostBySlug(slug, fields))
         // sort posts by date in descending order
-        .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
-        .map(item => mdItemToPost(item))
+        .sort( (post1, post2) => (post1.date > post2.date ? -1 : 1))
+        .map((item) => mdItemToPost(item))
         .filter(post => post.published)
 }
 
