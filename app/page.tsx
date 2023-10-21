@@ -1,12 +1,12 @@
 // noinspection JSUnusedGlobalSymbols
 
 import React from "react";
-import Layout from "../components/home/layout";
+import Layout from "./layout";
 import ProfileHeader from "../components/blog/profile-header";
 import TopNav from "../components/home/top-nav";
 import About from "../components/home/about";
 import Resume from "../components/home/resume";
-import {getAllPosts} from "@/lib/api";
+import {getAllPosts, getPostBySlug} from "@/lib/api";
 import BlogPreview from "../components/blog/blog-preview";
 import Post from "../types/post";
 import {BlogPreviewItem} from "@/components/common/blog-card";
@@ -17,7 +17,15 @@ type Props = {
     posts: Post[]
 }
 
-const MainIndex = ({posts}: Props) => {
+const MainIndex = () => {
+    const posts = getAllPosts([
+        'title',
+        'date',
+        'slug',
+        'author',
+        'coverImage',
+        'excerpt',
+    ], 3)
     const blogPreviews: BlogPreviewItem[] = posts.map((item) => {
         const preview: BlogPreviewItem = {
             title: item.title,
@@ -42,21 +50,36 @@ const MainIndex = ({posts}: Props) => {
 };
 
 export default MainIndex;
-
-// @ts-ignore
-export const getStaticProps = async () => {
-    const posts = getAllPosts([
-        'title',
-        'date',
-        'slug',
-        'author',
-        'coverImage',
-        'excerpt',
-    ], 3)
+export async function generateStaticParams() {
+    const posts = getAllPosts(['slug'])
 
     return {
-        props: {
-            posts: posts
-        }
+        paths: posts.map((post) => {
+            return {
+                params: {
+                    slug: post.slug,
+                },
+            }
+        }),
+        fallback: false,
     }
 }
+
+
+// @ts-ignore
+// export const getStaticProps = async () => {
+//     const posts = getAllPosts([
+//         'title',
+//         'date',
+//         'slug',
+//         'author',
+//         'coverImage',
+//         'excerpt',
+//     ], 3)
+//
+//     return {
+//         props: {
+//             posts: posts
+//         }
+//     }
+// }

@@ -2,7 +2,7 @@ import {useRouter} from 'next/router'
 import ErrorPage from 'next/error'
 import Container from '../../../components/home/container'
 import PostBody from '../../../components/blog/post-body'
-import Layout from '../../../components/blog/layout'
+import Layout from '../layout'
 import {getPostBySlug, getAllPosts} from '@/lib/api'
 import PostTitle from '../../../components/blog/post-title'
 import Head from 'next/head'
@@ -96,11 +96,7 @@ export async function generateStaticParams() {
 // Set the title of the page to be the post title, note that we no longer use
 // e.g. next/head in app dir, and this can be async just like the server
 // component
-export async function generateMetadata({
-                                           params: { slug },
-                                       }: {
-    params: { slug: string }
-}) {
+export async function generateMetadata({params: {slug}} : { params: { slug: string } }) {
     const { title } = getPostBySlug(slug, [
         'title',
         'date',

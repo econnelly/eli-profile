@@ -39,7 +39,7 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
     return items
 }
 
-export function getAllPosts(fields: string[] = [], size: number = 0): Post[] {
+export function getAllPosts(fields: string[] = [], size: number = 0) {
     const slugs = getPostSlugs()
     return slugs
         .filter((_, index) => {

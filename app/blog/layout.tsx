@@ -1,10 +1,10 @@
 import React from "react";
 import Head from "next/head";
 import {SITE_OWNER_FN} from "@/lib/constants";
-import Meta from "../home/meta";
-import Container from "./container";
-import Header from "./header";
-import Footer from "../common/footer";
+import Meta from "../../components/home/meta";
+import Container from "../../components/blog/container";
+import Header from "../../components/blog/header";
+import Footer from "../../components/common/footer";
 import {Router} from "next/router";
 import styles from './Layout.module.css'
 
