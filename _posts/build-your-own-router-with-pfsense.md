@@ -8,7 +8,7 @@ author:
   picture: '/assets/blog/authors/eli.jpeg'
 ogImage:
   url: '/assets/blog/build-your-own-router-with-pfsense/cover.jpg'
-published: true
+published: false
 ---
 
 Building your own pfSense router can feel like a big undertaking, but it does not have to be.
