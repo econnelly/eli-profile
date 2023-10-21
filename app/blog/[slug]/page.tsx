@@ -1,15 +1,15 @@
 import {useRouter} from 'next/router'
 import ErrorPage from 'next/error'
-import Container from '../../components/home/container'
-import PostBody from '../../components/blog/post-body'
-import Layout from '../../components/blog/layout'
+import Container from '../../../components/home/container'
+import PostBody from '../../../components/blog/post-body'
+import Layout from '../../../components/blog/layout'
 import {getPostBySlug, getAllPosts} from '@/lib/api'
-import PostTitle from '../../components/blog/post-title'
+import PostTitle from '../../../components/blog/post-title'
 import Head from 'next/head'
 import {SITE_OWNER} from '@/lib/constants'
-import markdownToHtml from '../../lib/markdownToHtml'
-import PostData from '../../types/post'
-import SidebarContainer from "../../components/blog/sidebar/sidebar-container";
+import markdownToHtml from '../../../lib/markdownToHtml'
+import PostData from '../../../types/post'
+import SidebarContainer from "../../../components/blog/sidebar/sidebar-container";
 
 type Props = {
     post: PostData
@@ -78,7 +78,7 @@ export async function getStaticProps({params}: Params) {
     }
 }
 
-export async function getStaticPaths() {
+export async function generateStaticParams() {
     const posts = getAllPosts(['slug'])
 
     return {
@@ -90,5 +90,27 @@ export async function getStaticPaths() {
             }
         }),
         fallback: false,
+    }
+}
+
+// Set the title of the page to be the post title, note that we no longer use
+// e.g. next/head in app dir, and this can be async just like the server
+// component
+export async function generateMetadata({
+                                           params: { slug },
+                                       }: {
+    params: { slug: string }
+}) {
+    const { title } = getPostBySlug(slug, [
+        'title',
+        'date',
+        'slug',
+        'author',
+        'content',
+        'ogImage',
+        'coverImage',
+    ])
+    return {
+        title,
     }
 }
