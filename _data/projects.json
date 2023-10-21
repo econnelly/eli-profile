@@ -21,6 +21,13 @@
       "url": "https://github.com/tachometer-io",
       "category": "ruby on rails",
       "description": "This was a way for me to build a very useful utility for myself and other developers who make money through ad revenue. The system would fetch ad revenue reports, standardize the values, and create a custom report revenue. I used it daily and wanted to make it available for other developers as well."
+    },
+    {
+      "title": "ESP32 Stock Ticker",
+      "image": "stock_ticker.jpg",
+      "url": "https://github.com/econnelly/esp32-stock-ticker",
+      "category": "esp32",
+      "description": "This project was a way for me to learn how to use the display that comes with the LILYGO T-Display-S3 device. It's an ESP32-S3 with a 1.9-inch TFT display. This project reads a json file that I posted to a webserver on my local network. The file contains the stock price of Google for the last 5 days. The device reads the file and displays a graph of the data. "
     }
   ]
 }

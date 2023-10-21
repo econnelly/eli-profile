@@ -4,7 +4,7 @@
   "city": "San Francisco",
   "state": "California",
   "email": "eli@eliconnelly.com",
-  "resume": "elic_resume.pdf",
+  "resume": "/assets/elic_resume.pdf",
   "occupation": "Engineering Manager",
   "description": "Enjoyer of technology",
   "image": "/assets/images/profile.jpg"

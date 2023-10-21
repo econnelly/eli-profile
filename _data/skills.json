@@ -7,7 +7,7 @@
     },
     {
       "name": "Management",
-      "level": 75
+      "level": 85
     },
     {
       "name": "Java",
@@ -15,10 +15,14 @@
     },
     {
       "name": "Kotlin",
-      "level": 60
+      "level": 65
     },
     {
       "name": "React",
+      "level": 35
+    },
+    {
+      "name": "Jetpack Compose",
       "level": 25
     }
   ]

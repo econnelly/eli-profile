@@ -36,7 +36,7 @@ const About = () => {
 
                         </div>
                         <div className={"column w-1000-stack"}>
-                            <Link href={"#0"}>
+                            <Link href={about.resume}>
                                 {/*<a className={"btn btn--download"}>*/}
                                     <svg className={"inline-block"} xmlns="http://www.w3.org/2000/svg" width="24"
                                          height="24" viewBox="0 0 24 24">
