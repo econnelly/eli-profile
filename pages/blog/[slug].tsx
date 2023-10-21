@@ -1,5 +1,3 @@
-import {useRouter} from 'next/router'
-import ErrorPage from 'next/error'
 import Container from '../../components/home/container'
 import PostBody from '../../components/blog/post-body'
 import Layout from '../../components/blog/layout'
@@ -17,31 +15,19 @@ type Props = {
 }
 
 const Post = ({post, morePosts}: Props) => {
-    const router = useRouter()
-    if (!router.isFallback && !post?.slug) {
-        return <ErrorPage statusCode={404}/>
-    }
     return (
         <Layout>
-            {router.isFallback ? (
-                <Container>
-                    <PostTitle>Loading…</PostTitle>
-                </Container>
-            ) : (
-                <>
-                    <Head>
-                        <title>
-                            {post.title} | {SITE_OWNER}
-                        </title>
-                        {post.ogImage ? <meta property="og:image" content={post.ogImage.url}/> : null}
-                    </Head>
+            <Head>
+                <title>
+                    {post.title} | {SITE_OWNER}
+                </title>
+                {post.ogImage ? <meta property="og:image" content={post.ogImage.url}/> : null}
+            </Head>
 
-                    <Container>
-                        <PostBody post={post} morePosts={morePosts}/>
-                        <SidebarContainer posts={morePosts}/>
-                    </Container>
-                </>
-            )}
+            <Container>
+                <PostBody post={post} morePosts={morePosts}/>
+                <SidebarContainer posts={morePosts}/>
+            </Container>
         </Layout>
     )
 }
