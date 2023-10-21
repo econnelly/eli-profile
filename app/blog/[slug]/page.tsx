@@ -8,12 +8,12 @@ import PostTitle from '../../components/blog/post-title'
 import Head from 'next/head'
 import {SITE_OWNER} from '@/lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
-import Post from '../../types/post'
+import PostData from '../../types/post'
 import SidebarContainer from "../../components/blog/sidebar/sidebar-container";
 
 type Props = {
-    post: Post
-    morePosts: Post[]
+    post: PostData
+    morePosts: PostData[]
 }
 
 const Post = ({post, morePosts}: Props) => {
