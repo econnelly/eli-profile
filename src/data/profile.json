@@ -1,0 +1,10 @@
+{
+  "name": "Eli Connelly",
+  "introduction": "I'm a developer and enthusiast based in the bay area. Nice to meet you!",
+  "socialLinks": [
+    { "label": "GitHub", "url": "https://github.com/econnelly" },
+    { "label": "Instagram", "url": "https://www.instagram.com/heyeli/" },
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/eliconnelly" },
+    { "label": "Email", "url": "mailto:hello@eliconnelly.com" }
+  ]
+}
